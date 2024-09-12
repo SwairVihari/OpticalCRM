@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 import store from './store';
-
+import { Invoice } from './components/detailsPage/Invoice';
 const options = {
   // you can also just use 'bottom center'
   position: positions.BOTTOM_CENTER,
@@ -18,11 +18,11 @@ const options = {
 
 ReactDOM.render(
   <AlertProvider template={AlertTemplate} {...options}>
-  <Provider store={store}>
-    <Router>
-    <App />
-  </Router>
-  </Provider>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   </AlertProvider>
   ,
   document.getElementById('root')

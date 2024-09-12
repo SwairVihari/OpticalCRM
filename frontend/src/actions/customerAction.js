@@ -12,19 +12,21 @@ import {
     ADD_ORDER_SUCCESS,
     UPDATE_CUSTOMER_FAIL,
     UPDATE_CUSTOMER_REQUEST,
-    UPDATE_CUSTOMER_SUCCESS
+    UPDATE_CUSTOMER_SUCCESS,
+    CUSTOMER_SUCCESS,
+    CUSTOMER_FAIL,
+    CUSTOMER_REQUEST
 } from "../constants/customerConstant"
-
-export const getCustomer = (keyword="", currentPage=1, id) => async (dispatch) => {
-    if(keyword === undefined){
-        keyword=''
+export const getCustomer = (keyword = "", currentPage = 1, id) => async (dispatch) => {
+    if (keyword === undefined) {
+        keyword = ''
     }
     try {
         dispatch({
             type: ALL_CUSTOMER_REQUEST
         });
         const { data } = await axios.get(`/api/customers?keyword=${keyword}&page=${currentPage}&id=${id}`)
-       
+
         // const customer = data.coustomers
         // console.log(data)
         // console.log(customer);
@@ -37,6 +39,21 @@ export const getCustomer = (keyword="", currentPage=1, id) => async (dispatch) =
         dispatch({
             type: ALL_CUSTOMER_FAIL,
             payload: error.response.data.success
+        })
+    }
+}
+export const getOneCustomer = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: CUSTOMER_REQUEST
+        });
+        const { data } = await axios.get(`/api/customer/${id}`);
+        // console.log(data)
+        dispatch({ type: CUSTOMER_SUCCESS, payload: data.customer });
+    } catch (error) {
+        dispatch({
+            type: CUSTOMER_FAIL,
+            payload: error
         })
     }
 }
@@ -81,7 +98,7 @@ export const updateProfile = (userData) => async (dispatch) => {
 };
 
 export const createOrder = (order, id) => async (dispatch) => {
-    
+
     dispatch({ type: ADD_ORDER_REQUEST });
 
     const config = {
@@ -89,14 +106,14 @@ export const createOrder = (order, id) => async (dispatch) => {
             "Content-Type": "application/json",
         },
     };
-    
+
     const { data } = await axios.post(`/api/customer/orders/new/${id}`, order, config);
     console.log(data, "create");
 
     dispatch({ type: ADD_ORDER_SUCCESS, payload: data });
-    
+
 }
-export const clearErrors = () => async(dispatch) => {
+export const clearErrors = () => async (dispatch) => {
     dispatch({
         type: CLEAR_ERRORS
     })

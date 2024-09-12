@@ -8,7 +8,7 @@ const clientSchema=new mongoose.Schema({
     },
     role:{
         type:String,
-        default:"user"
+        default:"user"  
     },
     name:String,
     address:String,
@@ -31,6 +31,8 @@ const clientSchema=new mongoose.Schema({
         select:false
     },
     
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
     remarks:String
 });
 clientSchema.pre("save",async function(next){
@@ -51,6 +53,16 @@ clientSchema.methods.comparePassword=async function(enteredPassword){
     const bool=await bcrypt.compare(enteredPassword,this.password);
     // console.log(bool);
     return bool;
+}
+clientSchema.methods.getResetPasswordToken = function () {
+    // Generating Token
+    const resetToken = crypto.randomBytes(20).toString("hex")
+
+    // Hashing and Adding to UserSchema
+    this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+    this.resetPasswordExpire = Date.now() + 15 * 60 * 1000
+
+    return resetToken;
 }
 
 module.exports=mongoose.model("Client",clientSchema);

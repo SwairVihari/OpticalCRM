@@ -87,7 +87,7 @@ function Home({ history }) {
 
                
                     <button  onClick={handleClick} className="submitbtn btn btn-success" type="submit">Submit</button>
-              
+                    <a>Forgot Password ?</a>
             
             </form>
                 {/* </Link> */}

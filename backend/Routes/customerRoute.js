@@ -5,7 +5,7 @@ const { isAuthenticatedClient, authRole } = require("../middleware/auth");
 const router = express.Router();
 
 router.route("/customers").get(getAllCustomers);
-router.route("/customers/:id").get(getCustomer);
+router.route("/customer/:id").get(getCustomer);
 router.route("/customers/new").post(isAuthenticatedClient, createCustomer);
 router.route("/customers/update").post(isAuthenticatedClient, updateCustomer);
 router.route("/customers/:id").put(isAuthenticatedClient, updateCustomer).delete(isAuthenticatedClient, deleteCustomer);

@@ -24,12 +24,19 @@
     margin: 5px auto;
 }
 
-.button{
+.Button{
     background-color: #678983;
     border: none;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 30px;
     color:#F0E9D2;
-    margin-top: 10px;
-    margin-left: 50px;
+    width: 200px;
+    margin: auto;
+      margin-top: 20px;
+    /* margin-left: 200px;  */ 
+}
+.Heading{
+    margin: auto;
+    margin-bottom: 20px;
+    color:#678983;
 }

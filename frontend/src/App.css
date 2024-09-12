@@ -185,20 +185,20 @@ input[type='date']:after {
   justify-content: center;
   align-items: center;
 }
-  
+
 table {
   border: 2px solid rgb(245, 233, 202);
   width: 90%;
   height: 200px;
   margin: 20px auto;
 }
-  
+
 th {
   border-bottom: 1px solid black;
   text-align: center;
   border: 2px solid rgb(245, 233, 202);
 }
-  
+
 td {
   text-align: center;
   border: 2px solid rgb(245, 233, 202);

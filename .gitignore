@@ -12,7 +12,7 @@
 
 # production
 /frontend/build
-
+/backend/config
 # misc
 /frontend/.DS_Store
 /frontend/.env.local

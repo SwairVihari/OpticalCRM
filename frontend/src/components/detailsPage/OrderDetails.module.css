@@ -6,8 +6,24 @@
     font-weight: 600;
 }
 
+.invoice {
+    overflow: hidden;
+    /* display: none; */
+    height: 0;
+    /* background-color: aqua; */
+    /* color: rebeccapurple; */
+}
+
+/* Invoice {
+    display: none;
+    overflow: hidden;
+    height: 0;
+} */
+
 .container {
     padding: 10px;
+    width: 50%;
+    margin: auto;
 }
 
 .buttonContainer {
@@ -26,4 +42,23 @@
     width: 100%;
     max-width: 500px;
     margin-top: 20px;
+}
+
+table {
+    border: 2px solid rgb(245, 233, 202);
+    width: 90%;
+    height: 200px;
+    margin: 20px auto;
+}
+
+th {
+    border-bottom: 1px solid black;
+    text-align: center;
+    border: 2px solid rgb(245, 233, 202);
+}
+
+td {
+    text-align: center;
+    border: 2px solid rgb(245, 233, 202);
+    margin: 2px;
 }

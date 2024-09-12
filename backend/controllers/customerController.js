@@ -18,16 +18,17 @@ exports.createCustomer = catchAsyncError(async (req, res, next) => {
     })
 });
 
-exports.getCustomer= catchAsyncError(async (req,res,next) => {
+exports.getCustomer = catchAsyncError(async (req, res, next) => {
 
-    console.log(req.params.id);
-   
-    const customer = await Customer.findById({_id:req.params.id});
+    // console.log(req.params.id);
+    // console.log(req.customer.id);
+
+    const customer = await Customer.findById(req.params.id);
 
     console.log(customer);
 
     res.status(201).json({
-        success:true,
+        success: true,
         customer
     })
 })
@@ -39,12 +40,12 @@ exports.getAllCustomers = catchAsyncError(async (req, res) => {
     let coustomers = await apiFeatures.query
     // console.log(coustomers)
     let filteredCoustmersCount = coustomers.length
-    const customerCount = coustomers.length<2 ? 2 : coustomers.length
+    const customerCount = coustomers.length < 2 ? 2 : coustomers.length
     apiFeatures.pagination(resultPerPage)
 
-    coustomers =  await apiFeatures.query.clone();
+    coustomers = await apiFeatures.query.clone();
     res.status(200).json({
-        success:true,
+        success: true,
         coustomers,
         customerCount,
         resultPerPage,
@@ -90,7 +91,7 @@ exports.addOrder = catchAsyncError(async (req, res, next) => {
     // console.log(customer)
     // const newOrder = req.body;
     // console.log(req.body);
-    await Customer.findOneAndUpdate({ _id: customer._id }, { $push: { orders:{ Order:order._id } }})
+    await Customer.findOneAndUpdate({ _id: customer._id }, { $push: { orders: { Order: order._id } } })
     // console.log(customer);
     res.status(200).json({
         success: true,
@@ -107,7 +108,7 @@ exports.getOrder = catchAsyncError(async (req, res, next) => {
     const order = await Order.findById(id);
 
     res.status(200).json({
-        success:true,
+        success: true,
         order
     })
 
